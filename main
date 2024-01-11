@@ -1,1 +1,90 @@
+class Car is 
+    abstract method needs_service(): bool
 
+
+
+//EXTENDED CLASS OF CAR
+
+public class Engine extends Car is
+  method needs_service(): bool is
+    return new boolean
+
+
+
+//EXTENDED CLASS OF ENGINE
+
+class CapulateEngine extends Engine is
+  method needs_service(): bool
+    return new EngineName1()
+
+class WilloughbyEngine extends Engine is
+  method needs_service(): bool
+    return new EngineName2()
+
+class SternmanEngine extends Engine is
+  method needs_service(): bool
+    return new EngineName3()
+
+
+
+//EXTENDED CLASS OF CAR
+
+public class Battery extends Car is
+  method needs_service(): bool is
+    return new boolean
+
+
+//EXGTENDED CLASS OF BATTERY
+
+class Spindlerbattery extends Battery is
+  method needs_service(): bool
+    return new BatteryName1()
+
+class NubbinBattery extends Battery is
+  method needs_service(): bool
+    return new BatteryName2()
+
+
+//INTERFACE CLASS CALLED Serviceable
+//TO GET THE OUTPUT IN BOOLEAN FOR A CAR SERVICE
+
+interface Serviceable extends Car is 
+  method needs_service(): bool
+    return new boolean
+
+//EXTENDED CLASS OF CAR as CarFactory FOR FURTHER MODIFICATIONS
+
+
+public class CarFactory extends Car is
+  method create_calliope(current_date: date, last_service_date: date, current_mileage: int, last_service_mileage: int): Car
+  method create_glissade(current_date: date, last_service_date: date, current_mileage: int, last_service_mileage: int): Car
+  method create_palindrome(current_date: date, last_service_date: date, current_mileage: int, last_service_mileage: int): Car
+  method create_rorschach(current_date: date, last_service_date: date, current_mileage: int, last_service_mileage: int): Car
+  method create_thovex(current_date: date, last_service_date: date, current_mileage: int, last_service_mileage: int): Car
+
+
+//APPLICATION CLASS TARGETING THE MAIN CAR CLASS AND THE WORKING OF ALL CLASS IN THE APPLICATION FORMAT
+//THIS CLASS IS MEANT TO BE OPTIONAL AS IT DOES NOT TARGET ANY IMPORTANT INFORMATION TO THE MAIN CAR CLASS.
+
+class Application is
+  field car: Car
+
+  method initialize() is
+    config = serviceLogFile()
+
+        if(config.Engine == "Calliope") then
+            car = new EngineName1()
+        else if(config.Engine == "Glissade") then
+            car = new EngineName2()
+        else if(config.Engine == "Palindrome") then
+            car = new EngineName3()
+        else if(config.Engine == "Rorschach") then
+            car = new BatteryName1()
+        else if(config.Engine == "Thovex") then
+            car = new BatteryName2()
+        else
+            throw new Exception("Error Invaild Data.")
+
+method main() is
+    this.initialize()
+    car.render()
